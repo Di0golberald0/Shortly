@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { serverErrorResponse } from '../controllers/controllerHelper.js';
 import * as singRepository from '../repositories/signRepository.js';
 
-async function authMiddleware(req, res, next) {
+export async function authMiddleware(req, res, next) {
   let token = req.headers?.authorization;
   token = token.replace('Bearer ', '');
   try {
@@ -15,11 +14,9 @@ async function authMiddleware(req, res, next) {
       res.locals.user = user.rows[0];
       return next();
     }
-    return serverErrorResponse(res);
+    return res.status(500).send('Erro');
   } catch (error) {
     console.log(error);
-    return serverErrorResponse(res);
+    return res.status(500).send('Erro');
   }
 }
-
-export { authMiddleware };
