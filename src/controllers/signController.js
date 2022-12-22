@@ -13,15 +13,27 @@ export async function signUp(req, res) {
     return res.status(422).send('Senhas devem ser iguais');
   }
 
+  const emailRegex = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/
+
+  if (!emailRegex.test(email)) {
+    return res.status(422).send('Estrutura de email inválida');
+  }
+
   const passwordHash = bcrypt.hashSync(password, 10);
 
   try {
-    await signRepository.insertUser(
+    const isThereUser = await signRepository.getUserByEmail(email);
+  
+    if (isThereUser.rowCount !== 0) {
+      return res.status(409).send('Usuário já cadastrado');
+    }
+    
+    const result = await signRepository.insertUser(
       name,
       email,
       passwordHash,
     );
-    
+
     res.sendStatus(201);
   } catch (error) {
     return res.status(500).send('Erro no Servidor');
@@ -33,6 +45,12 @@ export async function signIn(req, res) {
   
   if (!email || !password) {
     return res.status(422).send('Todos os campos devem ser enviados corretamente');
+  }
+
+  const emailRegex = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/
+
+  if (!emailRegex.test(email)) {
+    return res.status(422).send('Estrutura de email inválida');
   }
 
   try {
