@@ -1,7 +1,7 @@
 import { connection } from '../../db/database.js';
 import * as visitRepository from './visitRepository.js';
 
-async function insertShortenUrl({ url, userId, shortUrl }) {
+async function insertShortenUrl(url, userId, shortUrl) {
   return connection.query(
     `INSERT INTO shortens (url, "userId", "shorturl") VALUES ($1, $2, $3);`,
     [url, userId, shortUrl]

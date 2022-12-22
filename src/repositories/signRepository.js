@@ -1,6 +1,6 @@
 import { connection } from '../../db/database.js';
 
-async function insertUser({ name, email, password }) {
+async function insertUser(name, email, password) {
   const result = await connection.query(
     `INSERT INTO users (name, email, password) VALUES ($1, $2, $3);`,
     [name, email, password]
@@ -20,7 +20,7 @@ async function getTokenByUserId(userId) {
   );
 }
 
-async function insertSessions({ userId, token }) {
+async function insertSessions(userId, token) {
   return connection.query(
     `INSERT INTO sessions ("userId", token) VALUES ($1, $2);`,
     [userId, token]

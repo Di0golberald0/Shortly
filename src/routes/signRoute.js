@@ -1,8 +1,8 @@
-import express from 'express';
-import { signin, signup } from '../controllers/signController.js';
-const router = express.Router();
+import { Router } from 'express';
+import { signIn, signUp } from '../controllers/signController.js';
+import { userMiddleware } from '../middlewares/userMiddleware.js';
 
-router.post('/signup', signup);
-router.post('/signin', signin);
-
+const router = Router();
+router.post('/signup', userMiddleware, signUp);
+router.post('/signin', signIn);
 export default router;
