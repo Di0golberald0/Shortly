@@ -13,7 +13,8 @@ async function getTokenByUserId(userId) {
 }
 
 async function insertSessions(userId, token) {
-  return await connection.query(`INSERT INTO sessions ("userId", token) VALUES ($1, $2);`, [userId, token]);
+  await connection.query(`INSERT INTO sessions ("userId", token) VALUES ($1, $2);`, [userId, token]);
+  return;
 }
 
 export { insertUser, getUserByEmail, insertSessions, getTokenByUserId };

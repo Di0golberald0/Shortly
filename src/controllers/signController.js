@@ -1,6 +1,6 @@
 import * as signRepository from '../repositories/signRepository.js';
 import bcrypt from 'bcrypt';
-import { v4 as uuid } from 'uuid';
+import jwt from 'jsonwebtoken';
 
 export async function signUp(req, res) {
   const { name, email, password, confirmPassword } = req.body;
@@ -36,7 +36,7 @@ export async function signUp(req, res) {
 
     res.sendStatus(201);
   } catch (error) {
-    return res.status(500).send('Erro no Servidor');
+    return res.status(500).send('Erro no Servidor signup');
   }
 }
 
@@ -55,20 +55,18 @@ export async function signIn(req, res) {
 
   try {
     const user = await signRepository.getUserByEmail(email);
-  
-    if (user && bcrypt.compareSync(password, user.password)) {
-      const token = jwt.sign({ user: user.rows[0].id }, process.env.TOKEN_SECRET);
 
-      await signRepository.insertSessions({
-        userId: user.rows[0].id,
-        token,
-      });
-    
+    if (user.rowCount !== 0 && bcrypt.compareSync(password, user.rows[0].password)) {
+      
+      const token = jwt.sign({ user: user.rows[0].id }, process.env.TOKEN_SECRET);
+      
+      await signRepository.insertSessions(user.rows[0].id, token);
+
       res.status(200).send(token);
     } else {
       res.status(401).send("Erro no SignIn");
     } 
   } catch (error) {
-    return res.status(500).send('Erro no Servidor');
+    return res.status(500).send('Erro no Servidor signin');
   }
 }

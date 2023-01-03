@@ -19,7 +19,7 @@ async function shorten(req, res) {
 
     return res.status(200).send(shortUrl);
   } catch (error) {
-    return res.status(500).send('Erro no Servidor');
+    return res.status(500).send('Erro no Servidor shorten');
   }
 }
 
@@ -31,7 +31,7 @@ async function open(req, res) {
 
     return res.redirect(url.rows[0].url);
   } catch (error) {
-    return res.status(500).send('Erro no Servidor');
+    return res.status(500).send('Erro no Servidor open');
   }
 }
 
