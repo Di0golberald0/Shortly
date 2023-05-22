@@ -2,23 +2,18 @@
   "name": "api-shortly",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
-  "main": "index.js",
+  "description": "Shortly API",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/T8-driven/api-shortly.git"
+    "url": "git+https://github.com/Di0golberald0/Shortly"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Diogo Lima Beraldo",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/T8-driven/api-shortly/issues"
-  },
-  "homepage": "https://github.com/T8-driven/api-shortly#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
