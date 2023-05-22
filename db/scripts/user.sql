@@ -1,26 +1,23 @@
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+	"id" serial NOT NULL PRIMARY KEY,
+	"email" TEXT NOT NULL,
+	"password" TEXT NOT NULL,
+	"name" TEXT NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE sessions (
-    id SERIAL PRIMARY KEY,
-    token TEXT NOT NULL,
-    active BOOLEAN NOT NULL DEFAULT TRUE,
-    "userId" INTEGER REFERENCES "users"("id")
+	"id" serial NOT NULL PRIMARY KEY,
+	"token" TEXT NOT NULL,
+	"active" BOOLEAN NOT NULL DEFAULT true,
+	"userId" integer NOT NULL REFERENCES "users"("id")
 );
 
 CREATE TABLE shortens (
-    id SERIAL PRIMARY KEY,
-    url TEXT NOT NULL,
-    "shortUrl" TEXT NOT NULL,
-    "userId" INTEGER REFERENCES "users"("id")
-);
-
-CREATE TABLE visits (
-    id SERIAL PRIMARY KEY,
-    "shortId" INTEGER REFERENCES "shortens"("id"),
-    visit INTEGER NOT NULL DEFAULT 0
+	"id" serial NOT NULL PRIMARY KEY,
+	"url" TEXT NOT NULL,
+	"shortUrl" TEXT NOT NULL,
+	"userId" integer NOT NULL REFERENCES "users"("id"),
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"views" integer NOT NULL DEFAULT 0
 );
