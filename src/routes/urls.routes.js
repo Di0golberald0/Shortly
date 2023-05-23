@@ -6,7 +6,7 @@ import {
   deleteUrl,
   openShortUrl,
 } from '../controllers/urls.controller.js';
-import urlSchema from '../models/urlSchema.js';
+import urlSchema from '../schemas/urlSchema.js';
 import { validateSchema } from '../middlewares/schemaValidator.js';
 
 const router = Router();
