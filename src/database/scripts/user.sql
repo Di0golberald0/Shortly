@@ -11,6 +11,7 @@ CREATE TABLE sessions (
 	"token" TEXT NOT NULL,
 	"active" BOOLEAN NOT NULL DEFAULT true,
 	"userId" integer NOT NULL REFERENCES "users"("id")
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE shortens (
