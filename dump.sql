@@ -28,7 +28,8 @@ CREATE TABLE public.sessions (
     id integer NOT NULL,
     token text NOT NULL,
     active boolean DEFAULT true NOT NULL,
-    "userId" integer NOT NULL
+    "userId" integer NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -144,17 +145,17 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sessions VALUES (1, '4a0cfba0-0660-4f26-a31f-97d4bf5b0b9c', true, 1);
-INSERT INTO public.sessions VALUES (2, 'b3dcc7e6-09dc-4d50-a49c-ff4a9c94a208', true, 2);
-INSERT INTO public.sessions VALUES (3, 'bd8a4bb4-7256-43b1-a8a9-b57849a4e919', true, 3);
-INSERT INTO public.sessions VALUES (4, 'd38c7738-e3f9-4b1e-a491-efd8e64c6164', true, 5);
-INSERT INTO public.sessions VALUES (5, '0ba85bf2-3e1c-4bb4-a18a-7cbccc9eee90', true, 5);
-INSERT INTO public.sessions VALUES (6, '54258d87-05c2-43c0-9838-e41c38edd3bf', true, 5);
-INSERT INTO public.sessions VALUES (7, 'd1fe4a25-8822-408c-814b-93e17ed1234f', true, 5);
-INSERT INTO public.sessions VALUES (8, 'b87c0594-dfe5-41a6-b43b-f5722971bf5b', true, 1);
-INSERT INTO public.sessions VALUES (9, '3f40dd56-a52e-4d1b-bd56-272e34f569d1', true, 5);
-INSERT INTO public.sessions VALUES (10, '39eb0482-c789-44d9-8ff9-c16c5ceeeaa4', true, 1);
-INSERT INTO public.sessions VALUES (11, 'd2d9d57c-43e0-41ae-bee3-f161edf54998', true, 5);
+INSERT INTO public.sessions VALUES (1, '4a0cfba0-0660-4f26-a31f-97d4bf5b0b9c', true, 1, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (2, 'b3dcc7e6-09dc-4d50-a49c-ff4a9c94a208', true, 2, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (3, 'bd8a4bb4-7256-43b1-a8a9-b57849a4e919', true, 3, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (4, 'd38c7738-e3f9-4b1e-a491-efd8e64c6164', true, 5, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (5, '0ba85bf2-3e1c-4bb4-a18a-7cbccc9eee90', true, 5, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (6, '54258d87-05c2-43c0-9838-e41c38edd3bf', true, 5, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (7, 'd1fe4a25-8822-408c-814b-93e17ed1234f', true, 5, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (8, 'b87c0594-dfe5-41a6-b43b-f5722971bf5b', true, 1, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (9, '3f40dd56-a52e-4d1b-bd56-272e34f569d1', true, 5, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (10, '39eb0482-c789-44d9-8ff9-c16c5ceeeaa4', true, 1, '2023-05-23 17:41:59.062347');
+INSERT INTO public.sessions VALUES (11, 'd2d9d57c-43e0-41ae-bee3-f161edf54998', true, 5, '2023-05-23 17:41:59.062347');
 
 
 --
