@@ -21,7 +21,7 @@ export async function signin(req, res) {
    INSERT INTO sessions (token, "userId") VALUES ($1, $2)`,
       [token, user.id]
     );
-    return res.send(token);
+    return res.send({ token });
   };
 
   res.sendStatus(401);
