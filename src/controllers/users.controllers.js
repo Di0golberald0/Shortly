@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
-import { db } from "../database/database.js";
+import bcrypt from 'bcrypt';
+import { db } from '../database/database.js';
 
 export async function createUser(req, res) {
   const { name, email, password } = req.body;
@@ -12,7 +12,7 @@ export async function createUser(req, res) {
 
     if (existingUsers.rowCount > 0) {
       return res.sendStatus(409);
-    }
+    };
 
     const passwordHash = bcrypt.hashSync(password, 10);
     await db.query(
@@ -26,8 +26,8 @@ export async function createUser(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};
 
 export async function getUserById(req, res) {
   const { user } = res.locals;
@@ -56,8 +56,8 @@ export async function getUserById(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};
 
 export async function getRanking(req, res) {
   try {
@@ -77,5 +77,5 @@ export async function getRanking(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};

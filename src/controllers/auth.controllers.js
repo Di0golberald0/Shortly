@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt";
-import { v4 as uuid } from "uuid";
-import { db } from "../database/database.js";
+import bcrypt from 'bcrypt';
+import { v4 as uuid } from 'uuid';
+import { db } from '../database/database.js';
 
 export async function signin(req, res) {
   const { email, password } = req.body;
@@ -12,7 +12,7 @@ export async function signin(req, res) {
   const [user] = users;
   if (!user) {
     return res.sendStatus(401);
-  }
+  };
 
   if (bcrypt.compareSync(password, user.password)) {
     const token = uuid();
@@ -22,7 +22,7 @@ export async function signin(req, res) {
       [token, user.id]
     );
     return res.send(token);
-  }
+  };
 
   res.sendStatus(401);
-}
+};

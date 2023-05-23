@@ -1,5 +1,5 @@
-import { nanoid } from "nanoid";
-import { db } from "../database/database.js";
+import { nanoid } from 'nanoid';
+import { db } from '../database/database.js';
 
 export async function shortenUrl(req, res) {
   const { id } = res.locals.user;
@@ -20,8 +20,8 @@ export async function shortenUrl(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};
 
 export async function getUrlById(req, res) {
   const { id } = req.params;
@@ -41,8 +41,8 @@ export async function getUrlById(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};
 
 export async function openShortUrl(req, res) {
   const { shortUrl } = req.params;
@@ -72,8 +72,8 @@ export async function openShortUrl(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};
 
 export async function deleteUrl(req, res) {
   const { id } = req.params;
@@ -94,5 +94,5 @@ export async function deleteUrl(req, res) {
   } catch (error) {
     console.log(error);
     return res.status(500).send(error.message);
-  }
-}
+  };
+};
